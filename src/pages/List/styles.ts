@@ -56,7 +56,7 @@ export const HairdressersList = styled(
   showsVerticalScrollIndicator: false,
 })``;
 
-export const HairdresserCard = styled.View`
+export const HairdresserCard = styled.TouchableOpacity`
   flex-direction: row;
   background-color: #3e3b47;
   width: 100%;

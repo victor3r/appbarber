@@ -51,12 +51,13 @@ const List: React.FC<ListProps> = ({ navigation }) => (
         />
       </TouchableOpacity>
     </Header>
+
     <HairdressersContainer>
       <HairdresserText>Cabeleireiros</HairdresserText>
       <HairdressersList
         data={hairdressers}
         renderItem={({ item: hairdresser }) => (
-          <HairdresserCard>
+          <HairdresserCard key={hairdresser.name}>
             <Image source={{ uri: hairdresser.image }} />
             <HairdresserCardContent>
               <HairdresserName>{hairdresser.name}</HairdresserName>
