@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native';
 
 import getHairdressers from '../../utils/getHairdressers';
@@ -25,13 +25,10 @@ import {
 type RootStackParamList = {
   List: undefined;
   Profile: undefined;
+  Concluded: { provider: string };
 };
 
-type ListScreenNavigationProp = StackNavigationProp<RootStackParamList, 'List'>;
-
-type ListProps = {
-  navigation: ListScreenNavigationProp;
-};
+type ListProps = StackScreenProps<RootStackParamList, 'List'>;
 
 const hairdressers = getHairdressers();
 
@@ -57,7 +54,12 @@ const List: React.FC<ListProps> = ({ navigation }) => (
       <HairdressersList
         data={hairdressers}
         renderItem={({ item: hairdresser }) => (
-          <HairdresserCard key={hairdresser.name}>
+          <HairdresserCard
+            key={hairdresser.name}
+            onPress={() =>
+              navigation.navigate('Concluded', { provider: hairdresser.name })
+            }
+          >
             <Image source={{ uri: hairdresser.image }} />
             <HairdresserCardContent>
               <HairdresserName>{hairdresser.name}</HairdresserName>
